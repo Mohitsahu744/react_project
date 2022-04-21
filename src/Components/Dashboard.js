@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-// import validator from 'validator';
-// import { useEffect } from "react";
 import Swal from "sweetalert2";
 const Dashboard = () => {
   const [user, setUser] = useState({
@@ -67,7 +65,7 @@ const Dashboard = () => {
   //   }
 
   // }
-
+  
   const insertData = async () => {
     let { First_name, Last_name, Email, Phone_no, Dob, Gender } = user;
     // console.warn(user);
@@ -87,9 +85,11 @@ const Dashboard = () => {
         Gender,
       }),
       // body : JSON.stringify(user),
+      
     });
+    
     const d = await output.json();
-
+    console.log("output", d);
     if (
       !user.First_name ||
       !user.Last_name ||
@@ -97,15 +97,18 @@ const Dashboard = () => {
       !user.Phone_no ||
       !user.Dob ||
       !user.Gender
-    ) {
+    )
+    {
       Swal.fire("Enter all fields..");
-    } else {
+    }
+     else {
       Swal.fire("Added Successfull..");
     }
-    // console.log("output", d);
-    getuser();
+  
   };
+  getuser();
 
+//update
   const handleEvent = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
     // console.log("state",user)
@@ -370,7 +373,7 @@ const Dashboard = () => {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title" id="updateUserLabel">
-                  Modal title
+                  Update 
                 </h5>
                 <button
                   type="button"
@@ -435,7 +438,6 @@ const Dashboard = () => {
                       id="Email"
                     />
                   </div>
-  
                   <div className="form-group">
                     <label htmlFor="Phone_no">Phone no.</label>
                     <input
@@ -452,18 +454,20 @@ const Dashboard = () => {
                   </div>
               
                 </form>
-              </div>
+              </div>``
               <div className="modal-footer">
-              <button onClick={()=>updateUserFunc(elem.Id)} type="button" className="btn btn-primary">
+                
+              <button data-dismiss="modal" onClick={()=>updateUserFunc(elem.Id)} type="button" className="btn btn-primary">
                   Save changes
                 </button>
-                <button
+                
+                {/* <button
                   type="button"
                   className="btn btn-secondary"
                   data-bs-dismiss="modal"
                 >
                   Close
-                </button>
+                </button> */}
               
               </div>
             </div>
